@@ -20,13 +20,13 @@ int main()
     cout<<"Ingrese el angulo desde el cual el canhon O disparo: ";cin>>beta;
 
     cout<<"A continuacion ingrese las variables del canhon D."<<endl;
-    cout<<"Ingrese la posicion inicial en X del canhon D (tiene que ser menor al del canhon O): ";cin>>XoD;
-    while(XoD>XoO)
+    cout<<"Ingrese la posicion inicial en X del canhon D (tiene que ser mayor al del canhon O): ";cin>>XoD;
+    while(XoD<XoO)
     {
         cout<<"Ingrese la posicion inicial en X del canhon D (tiene que ser menor al del canhon O): ";cin>>XoD;
     }
     cout<<"Ingrese la posicion inicial en Y del canhon D (tiene que ser mayor al del canhon O): ";cin>>YoD;
-    while(YoD>YoO)
+    while(YoD<YoO)
     {
         cout<<"Ingrese la posicion inicial en Y del canhon D (tiene que ser mayor al del canhon O): ";cin>>YoD;
     }
@@ -46,9 +46,15 @@ int main()
     periO=2*3.14159*rO;
     AcirO=3.14159*(rO*rO);
 
-    if (YoO>YoD)
+    while(YO>=YoD && XO>=XoD)
     {
-        while(XO>XoD && YO>)
+        T++;
+        XO=XoO+VxO*T;
+        YO=YoO+VyO*T-1/2*g*(T*T);
+    }
+    if(YO==YoD && XO==XoD)
+    {
+
     }
 
 
