@@ -10,7 +10,7 @@ int main()
     //Variables para el DO
     int XoO, VxO, YoO, VyO, VoO, beta,  XO,YO;
     //Variables generales
-    float g=9.8, T, rD, diaD, periD, AcirD, rO, diaO, periO, AcirO;
+    float g=9.8, T=0, rD, diaD, periD, AcirD, rO, diaO, periO, AcirO;
 
     //Pidiendo datos
     cout<<"A continuacion ingrese las variables del canhon O."<<endl;
@@ -18,11 +18,18 @@ int main()
     cout<<"Ingrese la posicion inicial en Y del canhon O: ";cin>>YoO;
     cout<<"Ingrese la velocidad inicial canhon O: ";cin>>VoO;
     cout<<"Ingrese el angulo desde el cual el canhon O disparo: ";cin>>beta;
-    cout<<"Ingrese el tiempo en el que dispararon en segundos: ";cin>>T;
 
     cout<<"A continuacion ingrese las variables del canhon D."<<endl;
-    cout<<"Ingrese la posicion inicial en X del canhon D: ";cin>>XoD;
-    cout<<"Ingrese la posicion inicial en Y del canhon D: ";cin>>YoD;
+    cout<<"Ingrese la posicion inicial en X del canhon D (tiene que ser menor al del canhon O): ";cin>>XoD;
+    while(XoD>XoO)
+    {
+        cout<<"Ingrese la posicion inicial en X del canhon D (tiene que ser menor al del canhon O): ";cin>>XoD;
+    }
+    cout<<"Ingrese la posicion inicial en Y del canhon D (tiene que ser mayor al del canhon O): ";cin>>YoD;
+    while(YoD>YoO)
+    {
+        cout<<"Ingrese la posicion inicial en Y del canhon D (tiene que ser mayor al del canhon O): ";cin>>YoD;
+    }
     cout<<"Ingrese la velocidad inicial canhon D: ";cin>>VoD;
 
     //Definicion de magnitudes fisicas
@@ -39,7 +46,10 @@ int main()
     periO=2*3.14159*rO;
     AcirO=3.14159*(rO*rO);
 
-
+    if (YoO>YoD)
+    {
+        while(XO>XoD && YO>)
+    }
 
 
 
