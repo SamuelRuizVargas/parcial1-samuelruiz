@@ -17,6 +17,12 @@ bool golpeaD(int,int,int,float,float,float);
 
 int velociD(int,int,int,float,float,float);
 
+int tiempo3(int,int,float,float,float,float);
+
+bool golpea3(int,int,float,float,float,float);
+
+int veloci3(int,int,float,float,float,float);
+
 int main()
 {
     char continuar=0;
@@ -294,6 +300,41 @@ int main()
             }
         }
     }
+    cout<<"Ingrese cualquier caracter para continuar: ";cin>>continuar;
+    cout<<"----------------------------------------------------------------"<<endl;
+    //punto 3). 3 o 4 disparos que defiendan sin importar el cañon ofensivo
+    {
+        for (int i=0;i<=50;i++)
+            {
+                cout<<endl;
+            }
+        cout<<"Punto #3 - Ahora se mostraran los 3 o 4 posibles disparos defensivos que destruyan el disparo ofensivo sin importar si lo daña"<<endl;
+        cout<<endl;
+        cout<<"Con 45 grados: "<<endl;
+        anguO=45*pi/180;
+        anguD=(180-90)*pi/180;
+        tiempo_g= tiempo3(yD, d, anguD, destD, g, anguO);
+        velocidad_g= veloci3(yD, d, anguD, destD, g, anguO);
+        golpe= golpea3(yD, d, anguD, destD, g, anguO);
+        if (golpe!=NULL)
+        {
+            cout<<"Las balas chocan? "<<endl;
+            if (golpe==true)
+                cout<<"Si"<<endl;
+            if (tiempo_g!=-1)
+            cout<<"El tiempo en el que se golpean es: "<<tiempo_g<<" s"<<endl;
+            if (velocidad_g!=-1)
+            cout<<"La velocidad con la que debe ir para golpear a la otra es: "<<velocidad_g<<" m/s"<<endl;
+            cout<<"-------------------------------------------------------------------------------------------------------------------"<<endl;
+        }
+        else
+        {
+            cout<<"No es posible realizar un tiro desde ese angulo"<<endl;
+            cout<<"--------------------------------------------------------------------------------------------------------------------"<<endl;
+        }
+    }
+    cout<<"Ingrese cualquier caracter para continuar: ";cin>>continuar;
+    cout<<"----------------------------------------------------------------"<<endl;
 
     return 0;
 }
@@ -440,4 +481,98 @@ int velociD(int yD, int hO, int d, float anguD, float destD, float g)
         }
     }
     return -1;
+}
+
+int tiempo3(int yd, int d, float anguD, float destD, float g,float anguO)
+{
+    bool golpea=false;
+    for (int VoO=1; VoO<=1000;VoO+=1)
+    {
+        int tiempo_g;
+        float VxO = VoO*cos(anguO);
+        float VyO = VoO*sin(anguO);
+        float VxD = VoO*cos(anguD);
+        float VyD = VoO*sin(anguD);
+        for (int t=1;t<=10000;t++)
+        {
+            float xD=0;
+             float yD=0;
+            if (t>2)
+            {
+            float xD=d+VxD*t;
+            float yD=VyD*t-(0.5*g*t*t);
+            }
+            float xO=VxO*t;
+            float yO=yD+VyO*t-(0.5*g*t*t);
+            if(abs(punt_dist(xD, yD, xO, yO))<=destD)
+            {
+                golpea=true;
+                tiempo_g=t;
+                return tiempo_g;
+            }
+        }
+    }
+    return  -1;
+}
+
+bool golpea3(int yd, int d, float anguD, float destD, float g,float anguO)
+{
+    bool golpea=false;
+    for (int VoO=1; VoO<=1000;VoO+=1)
+    {
+        float VxO = VoO*cos(anguO);
+        float VyO = VoO*sin(anguO);
+        float VxD = VoO*cos(anguD);
+        float VyD = VoO*sin(anguD);
+        for (int t=1;t<=10000;t++)
+        {
+            float xD=0;
+             float yD=0;
+            if (t>2)
+            {
+            float xD=d+VxD*t;
+            float yD=yd+VyD*t-(0.5*g*t*t);
+            }
+            float xO=VxO*t;
+            float yO=yD+VyO*t-(0.5*g*t*t);
+            if(abs(punt_dist(xD, yD, xO, yO))<=destD)
+            {
+                golpea=true;
+                return golpea;
+            }
+        }
+    }
+    return  NULL;
+}
+
+int veloci3(int yd, int d, float anguD, float destD, float g,float anguO)
+{
+    bool golpea=false;
+    for (int VoO=1; VoO<=1000;VoO+=1)
+    {
+        int velocidad_g;
+        float VxO = VoO*cos(anguO);
+        float VyO = VoO*sin(anguO);
+        float VxD = VoO*cos(anguD);
+        float VyD = VoO*sin(anguD);
+        for (int t=1;t<=10000;t++)
+        {
+            float xD=0;
+             float yD=0;
+            if (t>2)
+            {
+            float xD=d+VxD*t;
+            float yD=yd+VyD*t-(0.5*g*t*t);
+            }
+            float xO=VxO*t;
+            float yO=yD+VyO*t-(0.5*g*t*t);
+            if(abs(punt_dist(xD, yD, xO, yO))<=destD)
+            {
+                golpea=true;
+                velocidad_g=t;
+                return velocidad_g;
+            }
+        }
+    }
+    return  -1;
 }
